@@ -1,5 +1,18 @@
+name: watchtower
 services:
-  test:
-    image: busybox:latest
-    container_name: test-service
-    command: sh -c "while true; do echo 'hello world'; sleep 300; done"
+  watchtower:
+    restart: unless-stopped
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    image: containrrr/watchtower
+    environment:
+    - TZ=Europe/Madrid
+    - WATCHTOWER_SCHEDULE= 0 0 5 * * *
+    - WATCHTOWER_CLEANUP=True
+    - WATCHTOWER_DEBUG=False
+    - WATCHTOWER_LIFECYCLE_HOOKS=True
+    - WATCHTOWER_NOTIFICATIONS=shoutrrr
+    - WATCHTOWER_NOTIFICATION_URL
+    dns:
+      - 10.80.0.2
