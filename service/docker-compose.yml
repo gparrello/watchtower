@@ -1,4 +1,3 @@
-name: watchtower
 services:
   watchtower:
     restart: unless-stopped
