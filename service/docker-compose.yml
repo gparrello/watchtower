@@ -1,0 +1,5 @@
+services:
+  test:
+    image: busybox:latest
+    container_name: test-service
+    command: sh -c "while true; do echo 'hello world'; sleep 300; done"
